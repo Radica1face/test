@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <!-- CSS -->
+    <link rel="stylesheet" th:href="@{/webjars/bootstrap/css/bootstrap.min.css}" type="text/css"/>
+    <title>Пользователи</title>
+</head>
+<body>
+<div class="container">
+
+    <div th:insert="layouts/layout :: header"></div>
+
+    <div class="row justify-content-center">
+        <div class="col">
+            <div class="row">
+                <div class="col mb-2">
+                    <h2>Пользователи</h2>
+                </div>
+            </div>
+            <div th:switch="${users}">
+                <h2 th:case="null">Пользователи не найдены</h2>
+                <div th:case="*">
+                    <table class="table table-striped">
+                        <thead class="thead-dark">
+                        <tr>
+                            <th style="width: 25%">ID</th>
+                            <th style="width: 20%">Логин</th>
+
+<!--                            <th style="width: 10%"></th>-->
+<!--                            <th style="width: 10%"></th>-->
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <tr th:each="user : ${users}">
+                            <td th:text="${user.id}"></td>
+                            <td th:text="${user.username}"></td>
+
+<!--                            <td><a  th:href="@{user-update/{id}(id=${user.id})}" class="btn btn-primary">Редактировать</a></td>-->
+<!--                            <td><a th:href="@{user-delete/{id}(id=${user.id})}" class="btn btn-danger">Удалить</a></td>-->
+                        </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+</html>

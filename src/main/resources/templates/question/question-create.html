@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" th:href="@{/webjars/bootstrap/css/bootstrap.min.css}" type="text/css"/>
+    <title>Добавить вопрос</title>
+</head>
+<body>
+
+<div class="container">
+
+    <div th:insert="layouts/layout :: header"></div>
+
+    <div class="row justify-content-center">
+        <div class="col-md-6">
+            <h2>Добавить вопрос</h2>
+            <form action="#" th:action="@{/questionnaire-create}" th:object="${question}" method="post">
+                <div class="form-group">
+                    <label for="title">Название анкеты</label>
+                    <input type="text" th:field="*{questionnaire}" th:value="${questionnaire}" class="form-control" id="title" readonly>
+                    <!--          <div th:if="${#fields.hasErrors('loanMoney')}" th:errors="*{loanMoney}" style="color:red;"></div>-->
+                </div>
+                <div class="form-group">
+                    <label for="questionText">Текст вопроса</label>
+                    <input type="text" th:field="*{questionText}" class="form-control" id="questionText">
+                    <!--          <div th:if="${#fields.hasErrors('loanMoney')}" th:errors="*{loanMoney}" style="color:red;"></div>-->
+                </div>
+                <br>
+                <div class="form-group">
+                    <input type="submit" value="Далее">
+                </div>
+            </form>
+        </div>
+        <div class="col-md-3">
+
+        </div>
+    </div>
+</div>
+
+</body>
+</html>
