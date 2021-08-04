@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml"
+      xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity5">
+<head>
+  <meta charset="UTF-8">
+  <link rel="stylesheet" th:href="@{/webjars/bootstrap/css/bootstrap.min.css}" type="text/css"/>
+
+  <title>Редактировать вопрос</title>
+</head>
+<body>
+
+<div class="container">
+
+  <div th:insert="layouts/layout :: header"></div>
+
+  <div class="row justify-content-center">
+    <div class="col-md-6">
+      <h2>Редактировать вопрос</h2>
+      <form action="#" th:action="@{/admin/question/update}" method="post">
+        <div class="form-group">
+          <label for="id">ID</label>
+          <input readonly type="text" name="id" th:value="${question.id}" class="form-control" id="id">
+        </div>
+        <div class="form-group">
+          <label for="title">Вопрос</label>
+          <input type="text" name="questionText" th:value="${question.questionText}" class="form-control" id="title">
+        </div>
+        <div class="form-group">
+          <input type="submit" value="Изменить вопрос">
+        </div>
+        <br>
+      </form>
+    </div>
+  </div>
+
+  <div class="row justify-content-center">
+      <div class="col mb-2">
+        <h2>Варианты ответа</h2>
+      </div>
+      <div class="col">
+        <p style="float:right;"><a th:href="@{/admin/answer/create/{id}(id=${question.id})}" class="btn btn-success">Добавить вариант ответа</a></p>
+      </div>
+    </div>
+  <div class="row justify-content-center">
+      <div class="col">
+        <table class="table table-striped">
+          <thead class="thead-dark">
+          <tr>
+            <th style="width: 20%">ID</th>
+            <th style="width: 20%">Вариант ответа</th>
+            <th style="width: 20%"></th>
+          </tr>
+          </thead>
+          <tbody>
+          <tr th:each="answer : ${answerOptions}">
+            <td th:text="${answer.id}"></td>
+            <td th:text="${answer.answerText}"></td>
+            <td><a  th:href="@{/admin/answer/update/{id}(id=${answer.id})}" class="btn btn-primary">Редактировать</a></td>
+          </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script type="text/javascript" th:src="@{/webjars/jquery/jquery.min.js}"/></script>
+<script type="text/javascript" th:src="@{/js/main.js}"></script>
+</body>
+</html>

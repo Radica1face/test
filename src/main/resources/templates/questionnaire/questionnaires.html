@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml"
+                xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity5">
+<head>
+    <meta charset="UTF-8">
+    <!-- CSS -->
+    <link rel="stylesheet" th:href="@{/webjars/bootstrap/css/bootstrap.min.css}" type="text/css"/>
+    <title>Анкеты</title>
+</head>
+<body>
+<div class="container">
+
+    <div th:insert="layouts/layout :: header"></div>
+
+    <div class="row justify-content-center">
+        <div class="col">
+            <div class="row">
+                <div class="col mb-2">
+                    <h2>Анкеты</h2>
+                </div>
+                <div class="col">
+                    <p style="float:right;"><a href="/admin/questionnaire/create" class="btn btn-success">Добавить анкету</a></p>
+                </div>
+            </div>
+            <div th:switch="${questionnaires}">
+                <h2 th:case="null">Анкеты не найдены</h2>
+                <div th:case="*">
+                    <table class="table table-striped">
+                        <thead class="thead-dark">
+                        <tr>
+                            <th style="width: 20%">ID</th>
+                            <th style="width: 20%">Название</th>
+                            <th style="width: 20%"></th>
+                            <th style="width: 20%"></th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <tr th:each="questionnaire : ${questionnaires}">
+                            <td th:text="${questionnaire.id}"></td>
+                            <td th:text="${questionnaire.title}"></td>
+                            <td><a th:href="@{/admin/question/create/{id}(id=${questionnaire.id})}" class="btn btn-info">Добавить вопрос</a></td>
+                            <td><a  th:href="@{/admin/questionnaire/update/{id}(id=${questionnaire.id})}" class="btn btn-primary">Редактировать</a></td>
+                        </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+</html>

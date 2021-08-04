@@ -1,10 +1,10 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.w3.org/1999/xhtml"
-                xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity5">
+      xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity5">
 <head>
     <meta charset="UTF-8">
     <link rel="stylesheet" th:href="@{/webjars/bootstrap/css/bootstrap.min.css}" type="text/css"/>
-    <title>Новая анкета</title>
+    <title>Добавить вариант ответа</title>
 </head>
 <body>
 
@@ -14,11 +14,13 @@
 
     <div class="row justify-content-center">
         <div class="col-md-6">
-            <h2>Новая анкета</h2>
-            <form action="#" th:action="@{/admin/questionnaire/create}" th:object="${questionnaire}" method="post">
+            <h2>Добавить вариант ответа</h2>
+            <form action="#" th:action="@{/admin/answer/create}" method="post">
                 <div class="form-group">
-                    <label for="title">Название анкеты</label>
-                    <input type="text" th:field="*{title}" class="form-control" id="title">
+                    <label for="title">Вариант ответа</label>
+                    <input type="text" name="answerText" class="form-control" id="title">
+                    <input type="hidden" name="questionId" th:value="${question.id}" class="form-control">
+                    <!--          <div th:if="${#fields.hasErrors('loanMoney')}" th:errors="*{loanMoney}" style="color:red;"></div>-->
                 </div>
                 <br>
                 <div class="form-group">

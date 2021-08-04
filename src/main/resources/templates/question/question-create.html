@@ -1,8 +1,10 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml"
+                xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity5">
 <head>
     <meta charset="UTF-8">
     <link rel="stylesheet" th:href="@{/webjars/bootstrap/css/bootstrap.min.css}" type="text/css"/>
+
     <title>Добавить вопрос</title>
 </head>
 <body>
@@ -14,20 +16,32 @@
     <div class="row justify-content-center">
         <div class="col-md-6">
             <h2>Добавить вопрос</h2>
-            <form action="#" th:action="@{/questionnaire-create}" th:object="${question}" method="post">
-                <div class="form-group">
-                    <label for="title">Название анкеты</label>
-                    <input type="text" th:field="*{questionnaire}" th:value="${questionnaire}" class="form-control" id="title" readonly>
-                    <!--          <div th:if="${#fields.hasErrors('loanMoney')}" th:errors="*{loanMoney}" style="color:red;"></div>-->
+            <form action="#" th:action="@{/admin/question/create}" method="post">
+                <div id="parentId">
+                    <div class="form-group">
+                        <label for="title">Название анкеты</label>
+                        <input type="text" th:value="${questionnaire.title}" class="form-control" id="title" readonly>
+                        <input type="hidden" name="questionnaireId" th:value="${questionnaire.id}">
+                        <!--          <div th:if="${#fields.hasErrors('loanMoney')}" th:errors="*{loanMoney}" style="color:red;"></div>-->
+                    </div>
+                    <div class="form-group">
+                        <label for="questionText">Текст вопроса</label>
+                        <div>
+                        <input type="text" name="questionText" class="form-control" id="questionText">
+                        </div>
+                        <!--          <div th:if="${#fields.hasErrors('loanMoney')}" th:errors="*{loanMoney}" style="color:red;"></div>-->
+                    </div>
+                    <div class="form-group">
+                        <label for="answerOption">Варианты ответа</label>
+                        <input type="text" name="answerOption" class="form-control" id="answerOption">
+                        <!--          <div th:if="${#fields.hasErrors('loanMoney')}" th:errors="*{loanMoney}" style="color:red;"></div>-->
+                    </div>
                 </div>
-                <div class="form-group">
-                    <label for="questionText">Текст вопроса</label>
-                    <input type="text" th:field="*{questionText}" class="form-control" id="questionText">
-                    <!--          <div th:if="${#fields.hasErrors('loanMoney')}" th:errors="*{loanMoney}" style="color:red;"></div>-->
-                </div>
+                <a onclick="return addField()" href="#">Добавить вариант ответа</a>
+
                 <br>
                 <div class="form-group">
-                    <input type="submit" value="Далее">
+                    <input type="submit" value="Сохранить">
                 </div>
             </form>
         </div>
@@ -37,5 +51,7 @@
     </div>
 </div>
 
+<script type="text/javascript" th:src="@{/webjars/jquery/jquery.min.js}"/></script>
+<script type="text/javascript" th:src="@{/js/main.js}"></script>
 </body>
 </html>

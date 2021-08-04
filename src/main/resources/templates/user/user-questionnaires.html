@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml"
+      xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity5">
+<head>
+    <meta charset="UTF-8">
+    <!-- CSS -->
+    <link rel="stylesheet" th:href="@{/webjars/bootstrap/css/bootstrap.min.css}" type="text/css"/>
+    <title>Анкеты пользователя</title>
+</head>
+<body>
+<div class="container">
+
+    <div th:insert="layouts/layout :: header"></div>
+
+    <div class="row justify-content-center">
+        <div class="col">
+            <div th:each="questionnaire : ${questionnaires}">
+                <h4 th:text="${questionnaire.title}"></h4>
+                <table class="table table-striped">
+                    <thead class="thead-dark">
+                    <tr>
+                        <th style="width: 25%">ID</th>
+                        <th style="width: 20%">Вопрос</th>
+                        <th style="width: 40%">Ответы</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr th:each="question : ${questionnaire.questions}">
+                        <td th:text="${question.id}"></td>
+                        <td th:text="${question.questionText}"></td>
+                        <td>
+                            <div th:each="choice : ${choices}">
+                                <p th:if="${choice.question} == ${question}" th:text="${choice.answerOption.answerText}"></p>
+                            </div>
+                        </td>
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+</html>

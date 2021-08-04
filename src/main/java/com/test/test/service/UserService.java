@@ -15,7 +15,6 @@ import java.util.Set;
 @Service
 @AllArgsConstructor
 public class UserService {
-
     private final UserRepository userRepository;
     private final RoleRepository roleRepository;
     private final BCryptPasswordEncoder bCryptPasswordEncoder;
@@ -38,9 +37,5 @@ public class UserService {
         roles.add(roleRepository.getById(2L));
         user.setRoles(roles);
         userRepository.save(user);
-    }
-
-    public void deleteById(Long id) {
-        userRepository.deleteById(id);
     }
 }
