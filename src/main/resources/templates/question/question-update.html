@@ -49,6 +49,7 @@
             <th style="width: 20%">ID</th>
             <th style="width: 20%">Вариант ответа</th>
             <th style="width: 20%"></th>
+            <th style="width: 10%"></th>
           </tr>
           </thead>
           <tbody>
@@ -56,6 +57,7 @@
             <td th:text="${answer.id}"></td>
             <td th:text="${answer.answerText}"></td>
             <td><a  th:href="@{/admin/answer/update/{id}(id=${answer.id})}" class="btn btn-primary">Редактировать</a></td>
+            <td><a  th:href="@{/admin/answer/delete/{id}(id=${answer.id})}" class="btn btn-danger">Удалить</a></td>
           </tr>
           </tbody>
         </table>

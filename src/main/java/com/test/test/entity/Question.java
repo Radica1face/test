@@ -1,6 +1,5 @@
 package com.test.test.entity;
 
-import com.fasterxml.jackson.annotation.JsonManagedReference;
 import lombok.NoArgsConstructor;
 import org.hibernate.annotations.LazyCollection;
 import org.hibernate.annotations.LazyCollectionOption;
@@ -20,11 +19,11 @@ public class Question {
     private String questionText;
 
     @LazyCollection(LazyCollectionOption.FALSE)
-    @ManyToOne (cascade=CascadeType.ALL)
+    @ManyToOne ()
     @JoinColumn (name="questionnaire_id")
     private Questionnaire questionnaire;
 
-    @OneToMany (mappedBy="question")
+    @OneToMany (mappedBy="question", cascade = CascadeType.ALL)
     private List<AnswerOption> answerOptions;
 
     public Long getId() {

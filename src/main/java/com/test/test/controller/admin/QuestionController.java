@@ -37,15 +37,14 @@ public class QuestionController {
                                  @RequestParam("questionText") String questionText,
                                  @RequestParam("answerOption") String[] answerOptions,
                                  RedirectAttributes redirectAttributes) {
-        Questionnaire questionnaire = questionnaireService.findById(questionnaireId);
 
+        Questionnaire questionnaire = questionnaireService.findById(questionnaireId);
         Question question = new Question();
         question.setQuestionText(questionText);
         question.setQuestionnaire(questionnaire);
         questionService.saveQuestion(question);
         questionRepository.flush();
-
-        for(String answerText: answerOptions){
+        for (String answerText : answerOptions) {
             AnswerOption answerOption = new AnswerOption();
             answerOption.setAnswerText(answerText);
             answerOption.setQuestion(question);
@@ -73,5 +72,14 @@ public class QuestionController {
         questionService.saveQuestion(question);
         redirectAttributes.addAttribute("id", question.getId());
         return "redirect:/admin/question/update/{id}";
+    }
+
+    @GetMapping("/admin/question/delete/{id}")
+    public String deleteQuestion(@PathVariable("id") Long id, RedirectAttributes redirectAttributes) {
+        Question question = questionService.findById(id);
+        Questionnaire questionnaire = question.getQuestionnaire();
+        questionService.deleteQuestion(id);
+        redirectAttributes.addAttribute("id", questionnaire.getId());
+        return "redirect:/admin/questionnaire/update/{id}";
     }
 }

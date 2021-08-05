@@ -19,4 +19,8 @@ public class ChoiceService {
     public List<Choice> findByUserId(Long userId) {
         return choiceRepository.findByUserId(userId);
     }
+
+    public void deleteChoice(Long id) {
+        choiceRepository.deleteById(id);
+    }
 }

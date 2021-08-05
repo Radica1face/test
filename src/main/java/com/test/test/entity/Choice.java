@@ -15,12 +15,12 @@ public class Choice {
     private Long id;
 
     @LazyCollection(LazyCollectionOption.FALSE)
-    @ManyToOne (cascade=CascadeType.ALL)
+    @ManyToOne ()
     @JoinColumn (name="answer_id")
     private AnswerOption answerOption;
 
     @LazyCollection(LazyCollectionOption.FALSE)
-    @ManyToOne (cascade=CascadeType.ALL)
+    @ManyToOne ()
     @JoinColumn (name="user_id")
     private User user;
 

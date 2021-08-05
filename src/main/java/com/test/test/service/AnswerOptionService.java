@@ -18,4 +18,7 @@ public class AnswerOptionService {
         answerOptionRepository.save(answerOption);
     }
 
+    public void deleteAnswerOption(Long id) {
+        answerOptionRepository.deleteById(id);
+    }
 }

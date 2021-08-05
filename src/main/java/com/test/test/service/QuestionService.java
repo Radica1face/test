@@ -23,4 +23,8 @@ public class QuestionService {
     public List<Question> findByQuestionnaireId(Long questionnaireId) {
         return questionRepository.findByQuestionnaireId(questionnaireId);
     }
+
+    public void deleteQuestion(Long id) {
+        questionRepository.deleteById(id);
+    }
 }

@@ -3,6 +3,8 @@ package com.test.test.entity;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.Size;
 import java.util.List;
 
 @Entity
@@ -13,10 +15,12 @@ public class Questionnaire {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
+    @NotEmpty(message = "Поле не может быть пустым")
+    @Size(min = 5, message = "Поле должно быть не менее 5 символов")
     @Column(name = "title")
     private String title;
 
-    @OneToMany (mappedBy="questionnaire", fetch=FetchType.EAGER)
+    @OneToMany (mappedBy="questionnaire", cascade = CascadeType.ALL)
     private List<Question> questions;
 
     public Long getId() {

@@ -23,4 +23,8 @@ public class QuestionnaireService {
     public void saveQuestionnaire(Questionnaire questionnaire) {
         questionnaireRepository.save(questionnaire);
     }
+
+    public void deleteQuestionnaire(Long id) {
+        questionnaireRepository.deleteById(id);
+    }
 }

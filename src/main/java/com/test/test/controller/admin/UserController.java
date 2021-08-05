@@ -12,7 +12,6 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
-import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
@@ -47,8 +46,12 @@ public class UserController {
             questionnaires.add(questionnaire);
         }
 
+        if(questionnaires.isEmpty()){
+            model.addAttribute("questionnaires", "noData");
+        } else {
+            model.addAttribute("questionnaires", questionnaires);
+        }
         model.addAttribute("choices", choices);
-        model.addAttribute("questionnaires", questionnaires);
         return "user/user-questionnaires";
     }
 }

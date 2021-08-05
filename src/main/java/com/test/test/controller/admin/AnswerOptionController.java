@@ -2,7 +2,6 @@ package com.test.test.controller.admin;
 
 import com.test.test.entity.AnswerOption;
 import com.test.test.entity.Question;
-import com.test.test.entity.Questionnaire;
 import com.test.test.repository.QuestionRepository;
 import com.test.test.service.AnswerOptionService;
 import com.test.test.service.QuestionService;
@@ -15,8 +14,6 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
-
-import java.util.List;
 
 @Controller
 @AllArgsConstructor
@@ -62,6 +59,15 @@ public class AnswerOptionController {
         answerOption.setAnswerText(answerText);
         answerOptionService.saveAnswerOption(answerOption);
         Question question = answerOption.getQuestion();
+        redirectAttributes.addAttribute("id", question.getId());
+        return "redirect:/admin/question/update/{id}";
+    }
+
+    @GetMapping("/admin/answer/delete/{id}")
+    public String deleteAnswerOption(@PathVariable("id") Long id, RedirectAttributes redirectAttributes) {
+        AnswerOption answerOption = answerOptionService.findById(id);
+        Question question = answerOption.getQuestion();
+        answerOptionService.deleteAnswerOption(id);
         redirectAttributes.addAttribute("id", question.getId());
         return "redirect:/admin/question/update/{id}";
     }

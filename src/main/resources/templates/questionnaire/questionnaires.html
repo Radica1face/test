@@ -31,15 +31,15 @@
                             <th style="width: 20%">ID</th>
                             <th style="width: 20%">Название</th>
                             <th style="width: 20%"></th>
-                            <th style="width: 20%"></th>
+                            <th style="width: 10%"></th>
                         </tr>
                         </thead>
                         <tbody>
                         <tr th:each="questionnaire : ${questionnaires}">
                             <td th:text="${questionnaire.id}"></td>
                             <td th:text="${questionnaire.title}"></td>
-                            <td><a th:href="@{/admin/question/create/{id}(id=${questionnaire.id})}" class="btn btn-info">Добавить вопрос</a></td>
                             <td><a  th:href="@{/admin/questionnaire/update/{id}(id=${questionnaire.id})}" class="btn btn-primary">Редактировать</a></td>
+                            <td><a  th:href="@{/admin/questionnaire/delete/{id}(id=${questionnaire.id})}" class="btn btn-danger">Удалить</a></td>
                         </tr>
                         </tbody>
                     </table>

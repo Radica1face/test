@@ -22,19 +22,16 @@
                         <label for="title">Название анкеты</label>
                         <input type="text" th:value="${questionnaire.title}" class="form-control" id="title" readonly>
                         <input type="hidden" name="questionnaireId" th:value="${questionnaire.id}">
-                        <!--          <div th:if="${#fields.hasErrors('loanMoney')}" th:errors="*{loanMoney}" style="color:red;"></div>-->
                     </div>
                     <div class="form-group">
                         <label for="questionText">Текст вопроса</label>
                         <div>
                         <input type="text" name="questionText" class="form-control" id="questionText">
                         </div>
-                        <!--          <div th:if="${#fields.hasErrors('loanMoney')}" th:errors="*{loanMoney}" style="color:red;"></div>-->
                     </div>
                     <div class="form-group">
                         <label for="answerOption">Варианты ответа</label>
                         <input type="text" name="answerOption" class="form-control" id="answerOption">
-                        <!--          <div th:if="${#fields.hasErrors('loanMoney')}" th:errors="*{loanMoney}" style="color:red;"></div>-->
                     </div>
                 </div>
                 <a onclick="return addField()" href="#">Добавить вариант ответа</a>

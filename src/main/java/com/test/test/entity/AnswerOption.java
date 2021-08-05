@@ -1,12 +1,11 @@
 package com.test.test.entity;
 
-import com.fasterxml.jackson.annotation.JsonBackReference;
 import lombok.NoArgsConstructor;
 import org.hibernate.annotations.LazyCollection;
 import org.hibernate.annotations.LazyCollectionOption;
 
 import javax.persistence.*;
-import java.util.List;
+import javax.validation.constraints.NotEmpty;
 
 @Entity
 @NoArgsConstructor
@@ -16,11 +15,12 @@ public class AnswerOption {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
+    @NotEmpty(message = "Поле не может быть пустым")
     @Column(name = "answer_text")
     private String answerText;
 
     @LazyCollection(LazyCollectionOption.FALSE)
-    @ManyToOne (cascade = CascadeType.ALL)
+    @ManyToOne ()
     @JoinColumn (name="question_id")
     private Question question;
 
